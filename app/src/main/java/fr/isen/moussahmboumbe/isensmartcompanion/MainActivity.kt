@@ -1,16 +1,15 @@
 package fr.isen.moussahmboumbe.isensmartcompanion
 
 import android.Manifest
-import android.app.Activity
-import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,12 +23,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import fr.isen.moussahmboumbe.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
 import fr.isen.moussahmboumbe.isensmartcompanion.model.Event
 import fr.isen.moussahmboumbe.isensmartcompanion.model.ChatMessage
@@ -45,10 +43,13 @@ import retrofit2.Response
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // ✅ Demande la permission pour les notifications (Android 13+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestNotificationPermission()
+        }
+
         enableEdgeToEdge()
-
-        requestNotificationPermission()
-
         setContent {
             ISENSmartCompanionTheme {
                 MainScreen()
@@ -56,14 +57,20 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // ✅ Demander la permission des notifications
+    // ✅ Fonction pour demander la permission de notification
     private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                101
-            )
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            val requestPermissionLauncher = registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if (!isGranted) {
+                    Toast.makeText(this, "Permission de notification refusée", Toast.LENGTH_SHORT).show()
+                }
+            }
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
 }
@@ -192,6 +199,7 @@ fun EventsScreen() {
     var events by remember { mutableStateOf<List<Event>?>(null) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     val reminderService = remember { ReminderService(context) }
+    var subscribedEvents by remember { mutableStateOf(mutableSetOf<String>()) }
 
     LaunchedEffect(Unit) {
         RetrofitInstance.api.getEvents().enqueue(object : Callback<List<Event>> {
@@ -223,20 +231,27 @@ fun EventsScreen() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 8.dp)
-                            .clickable {
-                                Toast.makeText(context, "Notification programmée pour ${event.title}", Toast.LENGTH_SHORT).show()
-                                reminderService.scheduleNotification(
-                                    event.id,
-                                    event.title,
-                                    event.description
-                                )
-                            },
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text(text = event.title, fontSize = 20.sp, color = Color.Black)
                             Text(text = event.date, fontSize = 14.sp, color = Color.Gray)
                             Text(text = event.location, fontSize = 14.sp, color = Color.DarkGray)
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            Button(onClick = {
+                                if (subscribedEvents.contains(event.id)) {
+                                    subscribedEvents.remove(event.id)
+                                    reminderService.cancelNotification(event.id, event.title)
+                                    Toast.makeText(context, "Désabonné de ${event.title}", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    subscribedEvents.add(event.id)
+                                    reminderService.scheduleNotification(event.id, event.title, event.description)
+                                    Toast.makeText(context, "Abonné à ${event.title}", Toast.LENGTH_SHORT).show()
+                                }
+                            }) {
+                                Text(text = if (subscribedEvents.contains(event.id)) "Se désabonner" else "S'abonner")
+                            }
                         }
                     }
                 }
@@ -244,6 +259,9 @@ fun EventsScreen() {
         }
     }
 }
+
+
+
 // ✅ Preview pour tester l'affichage dans l'éditeur
 @Preview(showBackground = true)
 @Composable

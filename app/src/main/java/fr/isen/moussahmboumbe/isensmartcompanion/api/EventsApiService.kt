@@ -17,7 +17,7 @@ class EventDetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val eventId = intent.getStringExtra("event_id") ?: "ID inconnu" // ✅ Correction
+        val eventId = intent.getStringExtra("event_id") ?: "ID inconnu" //
         val eventTitle = intent.getStringExtra("event_title") ?: "Événement inconnu"
         val eventDescription = intent.getStringExtra("event_description") ?: "Pas de description"
         val eventDate = intent.getStringExtra("event_date") ?: "Date inconnue"

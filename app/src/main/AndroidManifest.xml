@@ -16,13 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ISENSmartCompanion"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu"
+        android:enableOnBackInvokedCallback="true">
 
         <!-- Service pour gérer les rappels de notifications -->
         <service
             android:name=".notifications.ReminderService"
             android:permission="android.permission.SCHEDULE_EXACT_ALARM"
-            android:exported="false"/>
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <!-- Récepteur pour afficher la notification -->
         <receiver
