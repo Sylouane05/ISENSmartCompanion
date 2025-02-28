@@ -1,10 +1,16 @@
 package fr.isen.moussahmboumbe.isensmartcompanion.notifications
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import fr.isen.moussahmboumbe.isensmartcompanion.R
 
 class ReminderService(private val context: Context) {
 
@@ -18,43 +24,35 @@ class ReminderService(private val context: Context) {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Événements ISEN"
-            val descriptionText = "Notifications des événements auxquels vous êtes abonnés"
+            val name = "Rappels d'événements"
+            val descriptionText = "Notifications des événements épinglés"
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
             }
-            val notificationManager: NotificationManager =
-                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
 
     @SuppressLint("ScheduleExactAlarm")
-    fun scheduleNotification(eventTitle: String, eventDescription: String, delayMillis: Long = 10000) {
+    fun scheduleNotification(eventId: String, eventTitle: String, eventDescription: String) {
         val intent = Intent(context, NotificationReceiver::class.java).apply {
+            putExtra("event_id", eventId)
             putExtra("event_title", eventTitle)
             putExtra("event_description", eventDescription)
         }
 
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            System.currentTimeMillis().toInt(),
+            eventId.hashCode(),
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val triggerTime = System.currentTimeMillis() + delayMillis
+        val triggerTime = System.currentTimeMillis() + 10_000 // ✅ Déclenchement après 10s
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
     }
-
-    fun sendNotification() {
-
-    }
-}
-
-class NotificationReceiver {
-
 }

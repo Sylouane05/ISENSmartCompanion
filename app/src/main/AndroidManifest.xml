@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Permission Internet (si besoin pour Retrofit) -->
+
+    <!-- Permissions requises -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -17,26 +18,38 @@
         android:theme="@style/Theme.ISENSmartCompanion"
         tools:targetApi="31">
 
+        <!-- Service pour gérer les rappels de notifications -->
+        <service
+            android:name=".notifications.ReminderService"
+            android:permission="android.permission.SCHEDULE_EXACT_ALARM"
+            android:exported="false"/>
 
-        <service android:name=".notifications.ReminderService" android:exported="false"
-            tools:ignore="Instantiatable" />
+        <!-- Récepteur pour afficher la notification -->
+        <receiver
+            android:name=".notifications.NotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
 
-
-        <!-- Déclaration correcte de MainActivity -->
+        <!-- Déclaration de MainActivity (écran principal) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.ISENSmartCompanion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Déclaration correcte de EventDetailActivity -->
+        </activity>
+
+        <!-- Déclaration de l'activité de détails des événements -->
         <activity
             android:name=".EventDetailActivity"
             android:exported="true"
             android:theme="@style/Theme.ISENSmartCompanion" />
-    </application>
 
+    </application>
 </manifest>

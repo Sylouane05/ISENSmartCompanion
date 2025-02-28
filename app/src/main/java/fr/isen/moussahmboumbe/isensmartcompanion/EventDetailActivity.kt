@@ -1,8 +1,6 @@
 package fr.isen.moussahmboumbe.isensmartcompanion
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -60,9 +58,8 @@ fun EventDetailScreen(eventId: String, eventTitle: String, eventDescription: Str
                 if (isReminderSet) {
                     Toast.makeText(context, "Rappel activé", Toast.LENGTH_SHORT).show()
 
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        reminderService.sendNotification()
-                    }, 10000) // ✅ Envoie la notification après 10 secondes
+                    // ✅ Planifier la notification après 10 secondes
+                    reminderService.scheduleNotification(eventId, eventTitle, eventDescription)
                 } else {
                     Toast.makeText(context, "Rappel désactivé", Toast.LENGTH_SHORT).show()
                 }

@@ -1,6 +1,9 @@
 package fr.isen.moussahmboumbe.isensmartcompanion
 
+import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -25,13 +28,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import fr.isen.moussahmboumbe.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
 import fr.isen.moussahmboumbe.isensmartcompanion.model.Event
 import fr.isen.moussahmboumbe.isensmartcompanion.model.ChatMessage
 import fr.isen.moussahmboumbe.isensmartcompanion.api.RetrofitInstance
 import fr.isen.moussahmboumbe.isensmartcompanion.ai.GeminiAIService
 import fr.isen.moussahmboumbe.isensmartcompanion.database.AppDatabase
-import fr.isen.moussahmboumbe.isensmartcompanion.database.ChatDao
+import fr.isen.moussahmboumbe.isensmartcompanion.notifications.ReminderService
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,10 +46,24 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        requestNotificationPermission()
+
         setContent {
             ISENSmartCompanionTheme {
                 MainScreen()
             }
+        }
+    }
+
+    // ✅ Demander la permission des notifications
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                101
+            )
         }
     }
 }
@@ -92,7 +111,7 @@ fun BottomNavigationBar(navController: NavHostController) {
     }
 }
 
-// ✅ Écran d'accueil avec Gemini AI (Correction: Utilisation du callback)
+// ✅ Écran d'accueil avec Gemini AI
 @Composable
 fun HomeScreen() {
     val context = LocalContext.current
@@ -166,16 +185,13 @@ fun HomeScreen() {
     }
 }
 
-
-
-
-
-// ✅ Écran des événements récupérés via l'API
+// ✅ Écran des événements avec notifications
 @Composable
 fun EventsScreen() {
     val context = LocalContext.current
     var events by remember { mutableStateOf<List<Event>?>(null) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    val reminderService = remember { ReminderService(context) }
 
     LaunchedEffect(Unit) {
         RetrofitInstance.api.getEvents().enqueue(object : Callback<List<Event>> {
@@ -208,15 +224,12 @@ fun EventsScreen() {
                             .fillMaxWidth()
                             .padding(vertical = 8.dp)
                             .clickable {
-                                val intent = Intent(context, EventDetailActivity::class.java).apply {
-                                    putExtra("event_id", event.id)
-                                    putExtra("event_title", event.title)
-                                    putExtra("event_description", event.description)
-                                    putExtra("event_date", event.date)
-                                    putExtra("event_location", event.location)
-                                    putExtra("event_category", event.category)
-                                }
-                                context.startActivity(intent)
+                                Toast.makeText(context, "Notification programmée pour ${event.title}", Toast.LENGTH_SHORT).show()
+                                reminderService.scheduleNotification(
+                                    event.id,
+                                    event.title,
+                                    event.description
+                                )
                             },
                         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                     ) {
@@ -231,9 +244,6 @@ fun EventsScreen() {
         }
     }
 }
-
-
-
 // ✅ Preview pour tester l'affichage dans l'éditeur
 @Preview(showBackground = true)
 @Composable
