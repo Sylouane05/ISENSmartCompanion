@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.com.google.devtools.ksp.gradle.plugin)
-    alias(libs.plugins.com.google.android.libraries.mapsplatform.secrets.gradle.plugin.gradle.plugin) // ✅ Version correcte
+    alias(libs.plugins.com.google.android.libraries.mapsplatform.secrets.gradle.plugin.gradle.plugin)
 }
 
 android {
@@ -62,7 +62,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx.v261)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    // ✅ Google AI Client SDK (Gemini)
+    //  Google AI Client SDK (Gemini)
     implementation(libs.generativeai)
 
     // Ajout de Room Database
@@ -76,7 +76,7 @@ dependencies {
     // Coroutine pour exécuter Room en arrière-plan
     implementation(libs.kotlinx.coroutines.android)
 
-    // 🔴 SUPPRESSION des dépendances Firebase Vertex AI (elles ne sont PAS nécessaires)
+
 
     // Test et Debug
     testImplementation(libs.junit)

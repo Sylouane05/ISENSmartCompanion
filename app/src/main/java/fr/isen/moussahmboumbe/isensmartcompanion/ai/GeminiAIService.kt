@@ -1,30 +1,29 @@
 package fr.isen.moussahmboumbe.isensmartcompanion.ai
 
 import android.content.Context
-import fr.isen.moussahmboumbe.isensmartcompanion.BuildConfig
 import com.google.ai.client.generativeai.GenerativeModel
-import fr.isen.moussahmboumbe.isensmartcompanion.R
+import fr.isen.moussahmboumbe.isensmartcompanion.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class GeminiAIService(context: Context) {
 
-    // ✅ Charge la clé API depuis `gradle.properties`
+    //  Charge la clé API depuis `gradle.properties`
     private val apiKey: String = BuildConfig.GEMINI_API_KEY
 
-    // ✅ Vérifie si la clé API est bien chargée
+    //  Vérifie si la clé API est bien chargée
     init {
-        println(" Clé API chargée : $apiKey") // ✅ Vérifier dans Logcat
+        println(" Clé API chargée : $apiKey") //  Vérifier dans Logcat
     }
 
-    // ✅ Création du modèle Gemini AI
+    //  Création du modèle Gemini AI
     private val generativeModel = GenerativeModel(
         modelName = "gemini-1.5-flash",
-        apiKey = apiKey // ✅ Utilisation de la clé API correcte
+        apiKey = apiKey //  Utilisation de la clé API correcte
     )
 
-    // ✅ Fonction pour récupérer la réponse de Gemini AI via un callback
+    //  Fonction pour récupérer la réponse de Gemini AI via un callback
     fun getAIResponse(userInput: String, callback: (String) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
