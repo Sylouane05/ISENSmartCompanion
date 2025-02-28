@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "467825710253",
+    "project_id": "isensmartsompanion",
+    "storage_bucket": "isensmartsompanion.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467825710253:android:a2ee7444e4a3df16d9a224",
+        "android_client_info": {
+          "package_name": "fr.isen.moussahmboumbe.isensmartcompanion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6wBlBfw5x2OyNVz33053z6oZqr781V8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
