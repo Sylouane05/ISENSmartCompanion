@@ -57,7 +57,7 @@ class AgendaFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (eventSnapshot in snapshot.children) {
                         val event = eventSnapshot.getValue(Event::class.java)
-                        if (event != null && (event.notification || event.category == "cours")) {
+                        if (event != null && (event.notification || event.category == "Cours")) {
                             eventList.add(event)
                         }
                     }

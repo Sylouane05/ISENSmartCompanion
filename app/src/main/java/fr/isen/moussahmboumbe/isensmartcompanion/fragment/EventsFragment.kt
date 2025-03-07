@@ -50,7 +50,7 @@ class EventsFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (eventSnapshot in snapshot.children) {
                         val event = eventSnapshot.getValue(Event::class.java)
-                        if (event != null && event.category != "cours") { //  Exclure "cours"
+                        if (event != null && event.category != "Cours") { //  Exclure "Cours"
                             eventList.add(event)
                         }
                     }
