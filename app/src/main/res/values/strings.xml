@@ -1,6 +1,36 @@
 <resources>
     <string name="app_name">ISENSmartCompanion</string>
-    <string name="GEMINI_API_KEY">${GEMINI_API_KEY}</string>
+    <string name="GEMINI_API_KEY">AIzaSyBKjBMd6rPZc1l9UbCJFBerIa66Z0tMp94</string>
     <string name="title_activity_history_screen">HistoryScreen</string>
+
+    ! -- Page d'accueil -->
+    <string name="grand_titre">ISEN</string>
+    <string name="sous_titre">Smart Companion</string>
+    <string name="accueil_titre">Accueil</string>
+    <string name="question_prompt">Posez votre question</string>"
+
+    <!-- Page des événements -->
+    <string name="evenement_titre">Événements ISEN</string>"
+    <string name="event">Evenement</string>
+
+    <!-- Page de l'historique -->
+    <string name="historique_titre">Historique</string>"
+
+    <!-- Page agenda -->
+    <string name="agenda_titre">Agenda</string>"
+
+    <!-- Evenements ou agenda  disposition -->
+    <string name="categorie">Catégorie</string>"
+    <string name="titre">Titre</string>"
+    <string name="date">Date</string>"
+    <string name="lieu">Lieu</string>"
+    <string name="description">Description</string>"
+
+    <!-- Historique disposition -->
+    <string name="historique_question">Question</string>"
+    <string name="historique_reponse">Réponse</string>"
+    <string name="supprimer">Tout supprimer</string>"
+
+
 
 </resources>

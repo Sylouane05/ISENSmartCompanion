@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.ISENSmartCompanion" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.ISENSmartCompanion" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="texteParDefaut">
+        <item name="android:textColor">@color/lightgray</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="sousTitre" parent="texteParDefaut">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Titre" parent="sousTitre">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="grosTitre" parent="sousTitre">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
 </resources>

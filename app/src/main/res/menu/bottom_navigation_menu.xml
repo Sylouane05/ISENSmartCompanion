@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item
+       android:id="@+id/item_accueil"
+       android:title="@string/accueil_titre"
+       android:icon="@drawable/ic_accueil" />
+    <item
+        android:id="@+id/item_evenement"
+        android:title="@string/event"
+        android:icon="@drawable/ic_evenement" />
+    <item
+        android:id="@+id/item_historique"
+        android:title="@string/historique_titre"
+        android:icon="@drawable/ic_historique" />
+    <item
+        android:id="@+id/item_agenda"
+        android:title="@string/agenda_titre"
+        android:icon="@drawable/ic_agenda" />
+</menu>

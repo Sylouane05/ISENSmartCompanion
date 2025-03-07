@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:padding="8dp"
+    android:background="@drawable/event_background">
+
+    <!-- Icône notification -->
+    <ImageView
+        android:id="@+id/iconNotification"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_notifoff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="12dp"/>
+
+    <!-- Catégorie de l'événement -->
+    <TextView
+        android:id="@+id/categorieEvent"
+        style="@style/sousTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Catégorie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="12dp"/>
+
+    <!-- Titre de l'événement -->
+    <TextView
+        android:id="@+id/titreEvent"
+        style="@style/sousTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titre"
+        app:layout_constraintStart_toStartOf="@id/categorieEvent"
+        app:layout_constraintTop_toBottomOf="@id/categorieEvent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Lieu -->
+    <TextView
+        android:id="@+id/lieuEvent"
+        style="@style/sousTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Lieu"
+        app:layout_constraintStart_toStartOf="@id/categorieEvent"
+        app:layout_constraintTop_toBottomOf="@id/titreEvent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/dateEvent"
+        style="@style/sousTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Date"
+        app:layout_constraintStart_toEndOf="@id/lieuEvent"
+        app:layout_constraintTop_toTopOf="@id/lieuEvent"
+        android:layout_marginStart="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

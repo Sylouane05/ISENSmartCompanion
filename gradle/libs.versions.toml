@@ -1,9 +1,12 @@
 [versions]
 agp = "8.8.2"
+appcompat = "1.7.0"
+constraintlayout = "2.2.1"
 converterGson = "2.9.0"
 coreKtxVersion = "1.10.1"
 datastorePreferences = "1.1.2"
 firebaseBom = "33.9.0"
+fragmentKtx = "1.8.6"
 generativeAiVersion = "0.5.0"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
@@ -24,19 +27,33 @@ firebaseCommonKtx = "21.0.0"
 firebaseVertexai = "16.1.0"
 comGoogleDevtoolsKsp = "2.0.21-1.0.27"
 comGoogleAndroidLibrariesMapsplatformSecretsGradlePluginGradlePlugin = "2.0.1"
+recyclerview = "1.4.0"
 roomCompiler = "2.6.1"
+roomCompilerVersion = "2.5.2"
 roomKtx = "2.6.1"
+roomKtxVersion = "2.5.2"
 roomRuntime = "2.6.1"
+material = "1.12.0"
+googleGmsGoogleServices = "4.4.2"
+firebaseDatabase = "21.0.0"
+roomRuntimeVersion = "2.5.2"
 
 [libraries]
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-ktx-v1101 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-runtime-ktx-v261 = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-room-compiler-v252 = { module = "androidx.room:room-compiler", version.ref = "roomCompilerVersion" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-room-ktx-v252 = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-room-runtime-v252 = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-vertex-ai = { module = "com.google.firebase:firebase-vertex-ai" }
@@ -62,6 +79,8 @@ firebase-vertexai = { group = "com.google.firebase", name = "firebase-vertexai",
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -69,4 +88,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 com-google-devtools-ksp-gradle-plugin = { id = "com.google.devtools.ksp", version.ref = "comGoogleDevtoolsKsp" }
 com-google-android-libraries-mapsplatform-secrets-gradle-plugin-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "comGoogleAndroidLibrariesMapsplatformSecretsGradlePluginGradlePlugin" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

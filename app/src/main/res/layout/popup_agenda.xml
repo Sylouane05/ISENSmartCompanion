@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="500dp"
+    android:background="@drawable/popup_background">
+
+    <!-- Bouton de fermeture du popup -->
+    <ImageView
+        android:id="@+id/closePops"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_ferme"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Catégorie -->
+    <TextView
+        android:id="@+id/categoryPops"
+        style="@style/Titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/categorie"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/closePops"/>
+
+    <!-- Titre -->
+    <TextView
+        android:id="@+id/titlePops"
+        style="@style/Titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titre"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryPops"/>
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/datePops"
+        style="@style/sousTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlePops"/>
+
+    <!-- Lieu -->
+    <TextView
+        android:id="@+id/locationPops"
+        style="@style/sousTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lieu"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/datePops"
+        app:layout_constraintTop_toTopOf="@id/datePops"/>
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/descriptionPops"
+        style="@style/texteParDefaut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/datePops"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
