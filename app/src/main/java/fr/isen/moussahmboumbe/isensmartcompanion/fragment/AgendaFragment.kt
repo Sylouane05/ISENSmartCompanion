@@ -45,7 +45,7 @@ class AgendaFragment : Fragment() {
     }
 
     /**
-     * ✅ Charger les événements avec notification=true ou catégorie="cours"
+     *  Charger les événements avec notification=true ou catégorie="cours"
      */
     private fun loadAgendaFromDatabase() {
         val database = FirebaseDatabase.getInstance("https://isensmartsompanion-default-rtdb.firebaseio.com/")
@@ -72,7 +72,7 @@ class AgendaFragment : Fragment() {
     }
 
     /**
-     * ✅ Afficher un popup avec les détails de l'événement
+     *  Afficher un popup avec les détails de l'événement
      */
     @SuppressLint("InflateParams")
     private fun showPopup(view: View, event: Event) {

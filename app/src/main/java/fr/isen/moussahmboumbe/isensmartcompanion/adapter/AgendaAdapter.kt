@@ -32,7 +32,7 @@ class AgendaAdapter(
         holder.location.text = event.location
         holder.date.text = event.date
 
-        // ✅ Afficher le popup lorsque l'utilisateur clique sur un événement
+        // Afficher le popup lorsque l'utilisateur clique sur un événement
         holder.itemView.setOnClickListener {
             onClick(event)
         }

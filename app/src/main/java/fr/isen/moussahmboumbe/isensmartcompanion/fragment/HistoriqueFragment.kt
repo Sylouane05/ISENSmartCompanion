@@ -60,7 +60,7 @@ class HistoriqueFragment : Fragment() {
         lifecycleScope.launch {
             val historiqueDao = HistoriqueDatabase.getDatabase(requireContext()).historiqueDao()
             historiqueDao.deleteHistorique(historique)
-            loadHistorique() // 🔥 Rafraîchir après suppression
+            loadHistorique() //  Rafraîchir après suppression
         }
     }
 
@@ -68,7 +68,7 @@ class HistoriqueFragment : Fragment() {
         lifecycleScope.launch {
             val historiqueDao = HistoriqueDatabase.getDatabase(requireContext()).historiqueDao()
             historiqueDao.clearHistorique()
-            loadHistorique() // 🔥 Rafraîchir après suppression
+            loadHistorique() //  Rafraîchir après suppression
         }
     }
 

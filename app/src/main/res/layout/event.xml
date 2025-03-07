@@ -26,7 +26,7 @@
         style="@style/sousTitre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Catégorie"
+        android:text="@string/categorie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="12dp"/>
@@ -48,7 +48,7 @@
         style="@style/sousTitre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Lieu"
+        android:text="@string/lieu"
         app:layout_constraintStart_toStartOf="@id/categorieEvent"
         app:layout_constraintTop_toBottomOf="@id/titreEvent"
         android:layout_marginTop="4dp"/>
@@ -59,7 +59,7 @@
         style="@style/sousTitre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Date"
+        android:text="@string/date"
         app:layout_constraintStart_toEndOf="@id/lieuEvent"
         app:layout_constraintTop_toTopOf="@id/lieuEvent"
         android:layout_marginStart="8dp"/>

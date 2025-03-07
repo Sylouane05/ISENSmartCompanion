@@ -30,7 +30,7 @@ class HistoriqueAdapter(
         holder.questionText.text = historique.question
         holder.reponseText.text = historique.reponse
 
-        // ✅ Supprimer un historique individuel lorsqu'on clique sur l'icône
+        //  Supprimer un historique individuel lorsqu'on clique sur l'icône
         holder.deleteIcon.setOnClickListener {
             onDeleteClick(historique)
         }

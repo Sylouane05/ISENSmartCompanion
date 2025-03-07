@@ -7,5 +7,5 @@ data class Event(
     val description: String = "",
     val location: String = "",
     val title: String = "",
-    var notification: Boolean = false // ✅ Champ ajouté (par défaut à false)
+    var notification: Boolean = false //  Champ ajouté (par défaut à false)
 )

@@ -94,7 +94,7 @@ class EventAdapter(
 
         val notification = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_notifon)
-            .setContentTitle("Inscription confirmée 🎉")
+            .setContentTitle("Inscription confirmée ")
             .setContentText("Tu es inscrit à l'événement : ${event.title}")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)

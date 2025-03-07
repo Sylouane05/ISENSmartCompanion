@@ -38,7 +38,7 @@ class EventsFragment : Fragment() {
     }
 
     /**
-     * ✅ Charger les événements depuis Firebase en excluant ceux avec category="cours"
+     *  Charger les événements depuis Firebase en excluant ceux avec category="cours"
      */
     private fun loadEventsFromDatabase() {
         val database = FirebaseDatabase.getInstance("https://isensmartsompanion-default-rtdb.firebaseio.com/")
@@ -50,7 +50,7 @@ class EventsFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (eventSnapshot in snapshot.children) {
                         val event = eventSnapshot.getValue(Event::class.java)
-                        if (event != null && event.category != "cours") { // 🔥 Exclure "cours"
+                        if (event != null && event.category != "cours") { //  Exclure "cours"
                             eventList.add(event)
                         }
                     }
